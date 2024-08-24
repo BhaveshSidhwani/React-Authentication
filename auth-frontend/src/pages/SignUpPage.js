@@ -20,7 +20,7 @@ export const SignUpPage = () => {
     });
     const { token } = response.data;
     setToken(token);
-    navigate("/please-verify");
+    navigate(`/please-verify?email=${encodeURIComponent(emailValue)}`);
   };
 
   return (
