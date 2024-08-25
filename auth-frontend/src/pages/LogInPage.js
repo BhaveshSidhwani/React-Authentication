@@ -38,13 +38,17 @@ export const LogInPage = () => {
   }, []);
 
   const onLogInClicked = async () => {
-    const response = await axios.post("/api/login", {
-      email: emailValue,
-      password: passwordValue,
-    });
-    const { token } = response.data;
-    setToken(token);
-    navigate("/");
+    try {
+      const response = await axios.post("/api/login", {
+        email: emailValue,
+        password: passwordValue,
+      });
+      const { token } = response.data;
+      setToken(token);
+      navigate("/");
+    } catch (e) {
+      setErrorMessage(e.message);
+    }
   };
 
   return (
